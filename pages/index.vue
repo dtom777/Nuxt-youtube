@@ -6,8 +6,13 @@
         　class="item"
         v-if="r.snippet.thumbnails.standard"
       >
-        <img :src="r.snippet.thumbnails.standard.url" :alt="r.snippet.title" />
-        <span>{{ r.snippet.title }}</span>
+        <div class="video">
+          <img
+            :src="r.snippet.thumbnails.standard.url"
+            :alt="r.snippet.title"
+          />
+          <span>{{ r.snippet.title }}</span>
+        </div>
       </nuxt-link>
     </div>
   </div>
@@ -31,17 +36,21 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   flex-basis: 100%;
+  justify-content: center;
+  align-items: center;
   .item {
-    display: block;
-    width: 22.5%;
+    display: flex;
+    width: 50%;
     margin: 1rem 1.25%;
     text-decoration: none;
+    justify-content: center;
+    align-items: center;
     @media screen and (max-width: 960px) {
-      width: 45%;
+      width: 70%;
       margin: 1rem 2.5%;
     }
     @media screen and (max-width: 560px) {
-      width: 100%;
+      width: 80%;
       margin: 1rem;
     }
     img {
