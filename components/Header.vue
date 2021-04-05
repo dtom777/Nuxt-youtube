@@ -5,8 +5,10 @@
     </div>
     <div class="item">
       <form>
-        <input type="text" placeholder="キーワードを入力" v-model="keyword" />
-        <button>検索</button>
+        <input type="text" placeholder="キーワードを入力" v-model="query" />
+        <nuxt-link :to="`/search/${this.query}`">
+          <button>検索</button>
+        </nuxt-link>
       </form>
     </div>
   </div>
@@ -16,8 +18,24 @@
 export default {
   data() {
     return {
-      keyword: ""
+      query: "hikakin",
+      apiKey: process.env.API_KEY
     };
+  },
+  methods: {
+    searchVideo() {
+      this.$router.push("/");
+      // this.$router.push({
+      //   path: "search",
+      //   query: {
+      //     type: video,
+      //     part: snippet,
+      //     q: this.query,
+      //     maxResults: 3,
+      //     key: this.apiKey
+      //   }
+      // });
+    }
   }
 };
 </script>
@@ -64,7 +82,7 @@ export default {
         background-color: white;
       }
       button {
-        width: 20%;
+        width: 50px;
       }
     }
   }
