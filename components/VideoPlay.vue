@@ -1,7 +1,15 @@
 <template>
-  <div>
-    <youtube :videoId="videoId" ref="youtube" :player-vars="{ autoplay: 1 }" />
-  </div>
+  <v-container>
+    <v-row>
+      <v-col cols="8">
+        <youtube
+          :videoId="videoId"
+          ref="youtube"
+          :player-vars="{ autoplay: 1 }"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -20,5 +28,3 @@ export default {
   }
 };
 </script>
-
-<style></style>

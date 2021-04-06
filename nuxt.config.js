@@ -28,7 +28,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ["@nuxtjs/vuetify"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -38,6 +38,17 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+  vuetify: {
+    // customVariables: ['~/assets/variables.scss'],
+    threeShake: true,
+    defaultAssets: {
+      icons: false,
+      font: false
+    },
+    theme: {
+      dark: false
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

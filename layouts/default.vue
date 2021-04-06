@@ -1,30 +1,16 @@
 <template>
-  <div class="wrapper">
+  <v-app>
     <Header />
-    <div class="main">
-      <Nuxt />
-    </div>
-  </div>
+    <v-main>
+      <v-container>
+        <Nuxt />
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-.wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #181818;
-  .main {
-    padding-top: 56px;
-    display: flex;
-    flex: 1;
-    width: 100%;
-    background-color: #181818;
-    color: white;
-    @media screen and (max-width: 960px) {
-      max-width: 90%;
-      margin: 0 auto;
-      flex-direction: column;
-    }
-  }
+<style>
+* {
+  text-decoration: none;
 }
 </style>
