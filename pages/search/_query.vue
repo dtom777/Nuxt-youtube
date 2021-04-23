@@ -30,12 +30,19 @@
 
 <script>
 export default {
-  async asyncData({ $axios, $config, params }) {
-    const res = await $axios.$get(
-      `${$config.apiUrl}/search?type=video&part=snippet&regionCode=JP&maxResults=12&q==${params.query}&key=${$config.apiKey}`
-    );
-    console.log(res.items);
-    return { res };
+  async asyncData({ $axios, $config, params, error }) {
+    try {
+      const res = await $axios.$get(
+        `${$config.apiUrl}/search?type=video&part=snippet&regionCode=JP&maxResults=12&q==${params.query}&key=${$config.apiKey}`
+      );
+      console.log(res.items);
+      return { res };
+    } catch (err) {
+      error({
+        statusCode: err.response.status,
+        message: err.response.data.message
+      });
+    }
   }
 };
 </script>

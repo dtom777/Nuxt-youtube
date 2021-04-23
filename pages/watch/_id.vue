@@ -33,17 +33,24 @@ export default {
       id: this.$route.params.id
     };
   },
-  async asyncData({ $axios, $config, params }) {
-    const res = await $axios.$get(
-      `${$config.apiUrl}/videos?type=video&part=snippet&regionCode=JP&id=${params.id}&key=${$config.apiKey}`
-    );
-    const related = await $axios.$get(
-      `${$config.apiUrl}/search?type=video&part=snippet&maxResults=8&relatedToVideoId=${params.id}&key=${$config.apiKey}`
-    );
-    return {
-      res,
-      related: related.items
-    };
+  async asyncData({ $axios, $config, params, error }) {
+    try {
+      const res = await $axios.$get(
+        `${$config.apiUrl}/videos?type=video&part=snippet&regionCode=JP&id=${params.id}&key=${$config.apiKey}`
+      );
+      const related = await $axios.$get(
+        `${$config.apiUrl}/search?type=video&part=snippet&maxResults=8&relatedToVideoId=${params.id}&key=${$config.apiKey}`
+      );
+      return {
+        res,
+        related: related.items
+      };
+    } catch (err) {
+      error({
+        statusCode: err.response.status,
+        message: err.response.data.message
+      });
+    }
   }
 };
 </script>

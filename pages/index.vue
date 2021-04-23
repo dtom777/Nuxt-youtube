@@ -23,12 +23,27 @@
 </template>
 
 <script>
+// export default {
+//   async asyncData({ $axios, $config, error }) {
+//     const res = await $axios.$get(
+//       `${$config.apiUrl}/videos?type=video&part=snippet&maxResults=20&regionCode=JP&chart=mostPopular&key=${$config.apiKey}`
+//     );
+//     return { res };
+//   }
+// };
 export default {
-  async asyncData({ $axios, $config }) {
-    const res = await $axios.$get(
-      `${$config.apiUrl}/videos?type=video&part=snippet&maxResults=20&regionCode=JP&chart=mostPopular&key=${$config.apiKey}`
-    );
-    return { res };
+  async asyncData({ $axios, $config, error }) {
+    try {
+      const res = await $axios.$get(
+        `${$config.apiUrl}/videos?type=video&part=snippet&maxResults=20&regionCode=JP&chart=mostPopular&key=${$config.apiKey}`
+      );
+      return { res };
+    } catch (err) {
+      error({
+        statusCode: err.response.status,
+        message: err.response.data.message
+      });
+    }
   }
 };
 </script>
