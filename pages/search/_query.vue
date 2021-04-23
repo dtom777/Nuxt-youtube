@@ -1,8 +1,9 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-cos
-        cols="12"
+      <v-col
+        cols="6"
+        sm="4"
         v-for="r in res.items"
         :key="r.id.videoId"
         class="container"
@@ -17,10 +18,12 @@
             :src="r.snippet.thumbnails.medium.url"
             :alt="r.snippet.title"
           />
-          <v-card-title>{{ r.snippet.title }}</v-card-title>
+          <v-card-title class="d-block text-truncate">
+            {{ r.snippet.title }}
+          </v-card-title>
           <v-card-subtitle>{{ r.snippet.channelTitle }}</v-card-subtitle>
         </v-card>
-      </v-cos>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -29,7 +32,7 @@
 export default {
   async asyncData({ $axios, $config, params }) {
     const res = await $axios.$get(
-      `${$config.apiUrl}/search?type=video&part=snippet&regionCode=JP&maxResults=10&q==${params.query}&key=${$config.apiKey}`
+      `${$config.apiUrl}/search?type=video&part=snippet&regionCode=JP&maxResults=12&q==${params.query}&key=${$config.apiKey}`
     );
     console.log(res.items);
     return { res };

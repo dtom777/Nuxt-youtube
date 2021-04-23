@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="12" v-for="r in res.items" :key="r.id">
+      <v-col cols="6" sm="4" v-for="r in res.items" :key="r.id">
         <v-card
           nuxt
           tile
@@ -12,7 +12,7 @@
             :src="r.snippet.thumbnails.standard.url"
             :alt="r.snippet.title"
           />
-          <v-card-title>
+          <v-card-title class="d-block text-truncate">
             {{ r.snippet.title }}
           </v-card-title>
           <v-card-subtitle>{{ r.snippet.channelTitle }}</v-card-subtitle>

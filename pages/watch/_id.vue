@@ -1,27 +1,27 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col v-if="res" cols="12">
+      <v-col v-if="res" cols="8">
         <VideoPlay :videoId="id" />
-        <p>{{ res.items[0].snippet.title }}</p>
-        <div class="video-item">
-          <pre>{{ res.items[0].snippet.description }}</pre>
+        <h2>{{ res.items[0].snippet.title }}</h2>
+        <pre>{{ res.items[0].snippet.description }}</pre>
+      </v-col>
+      <v-col cols="4">
+        <div v-for="r in related" :key="r.id.videoId">
+          <v-card>
+            <nuxt-link :to="'/watch/' + r.id.videoId" v-if="r.snippet">
+              <v-img
+                v-if="r.snippet.thumbnails.medium.url"
+                :src="r.snippet.thumbnails.medium.url"
+                :alt="r.snippet.title"
+              />
+              <v-card-title class="subtitle-1 black--text">{{
+                r.snippet.title
+              }}</v-card-title>
+            </nuxt-link>
+          </v-card>
         </div>
       </v-col>
-      <!-- <div v-for="r in related" :key="r.id.videoId">
-        <div>
-          <nuxt-link :to="'/watch/' + r.id.videoId" v-if="r.snippet">
-            <img
-              v-if="r.snippet.thumbnails.medium.url"
-              :src="r.snippet.thumbnails.medium.url"
-              :alt="r.snippet.title"
-            />
-            <div class="info">
-              <span>{{ r.snippet.title }}</span>
-            </div>
-          </nuxt-link>
-        </div>
-      </div> -->
     </v-row>
   </v-container>
 </template>
@@ -47,3 +47,9 @@ export default {
   }
 };
 </script>
+
+<style>
+pre {
+  white-space: pre-wrap;
+}
+</style>
